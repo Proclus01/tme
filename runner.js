@@ -12,9 +12,21 @@ class Runner {
         // and run the absolute path of the file
 
         for (let file of this.testFiles) {
-            // define our own it function like from mocha and declare it globally
+            // store our helper functions in an array
+            const beforeEaches = [];
+
+            // define our own global beforeEach function like from mocha
+            global.beforeEach = (fn) => {
+                beforeEaches.push(fn);
+            };
+
+            // define our own 'it' function like from mocha and declare it globally
             global.it = (description, fn) => { // args = string description, function
-                console.log(description);
+
+                // run the beforeEaches array with our helper functions first
+                beforeEaches.forEach(func => func());
+                // then run our intended function for testing
+                fn();
             };
 
             // execute the file using node
