@@ -20,13 +20,13 @@ it('should sum an array', () => {
     
     assert.strictEqual(total, 6);
 
-    // add code to break the numbers array to test if the numbers array
+    // add code to break the numbers array to test if the numbers array is reset
     numbers.push(3);
     numbers.push(3);
     numbers.push(3);
     numbers.push(3);
     numbers.push(3);
-    
+
 });
 
 it('beforeEach is ran each time', () => {
