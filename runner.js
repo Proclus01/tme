@@ -38,7 +38,13 @@ class Runner {
             };
 
             // execute the file using node
-            require(file.name);
+            try {
+                require(file.name);
+            } catch(err) {
+                console.log('x - Error Loading File', file.name);
+                console.log(err);
+            }
+            
         }
     }
 
