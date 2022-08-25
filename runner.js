@@ -32,7 +32,7 @@ class Runner {
                     console.log(`OK - ${description}`);
                 } catch (err) {
                     console.log(`X - ${description}`);
-                    console.log(err);
+                    console.log(err.message);
                 }
                 
             };
