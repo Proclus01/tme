@@ -7,6 +7,16 @@ class Runner {
         this.testFiles = [];
     }
 
+    async runTests() {
+        // iterate through the test files we've collected in an array
+        // and run the absolute path of the file
+
+        for (let file of this.testFiles) {
+            // execute the file using node
+            require(file.name);
+        }
+    }
+
     async collectFiles(targetPath){
         // iterate through all the different folders of a project
         // and add it to the this.files array

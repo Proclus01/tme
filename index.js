@@ -9,7 +9,7 @@ const runner = new Runner();
 const run = async () => {
     await runner.collectFiles(process.cwd()); // current working directory
 
-    console.log(runner.testFiles);
+    runner.runTests();
 };
 
 run();
