@@ -12,6 +12,11 @@ class Runner {
         // and run the absolute path of the file
 
         for (let file of this.testFiles) {
+            // define our own it function like from mocha and declare it globally
+            global.it = (description, fn) => { // args = string description, function
+                console.log(description);
+            };
+
             // execute the file using node
             require(file.name);
         }
