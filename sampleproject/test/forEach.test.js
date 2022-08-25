@@ -1,8 +1,16 @@
 const assert = require('assert');
 const { forEach } = require('../index');
 
+let numbers;
+// to run before every 'it' statement
+// re-initializes numbers array before every statement
+beforeEach(
+    () => {
+        numbers = [1, 2, 3];
+    }
+);
+
 it('should sum an array', () => {
-    const numbers = [1, 2, 3];
 
     let total = 0;
 
@@ -11,4 +19,18 @@ it('should sum an array', () => {
     });
     
     assert.strictEqual(total, 6);
+
+    // add code to break the numbers array to test if the numbers array
+    numbers.push(3);
+    numbers.push(3);
+    numbers.push(3);
+    numbers.push(3);
+    numbers.push(3);
+    
+});
+
+it('beforeEach is ran each time', () => {
+    assert.strictEqual(numbers.length, 3);
+
+    
 });
