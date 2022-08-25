@@ -25,8 +25,16 @@ class Runner {
 
                 // run the beforeEaches array with our helper functions first
                 beforeEaches.forEach(func => func());
+
                 // then run our intended function for testing
-                fn();
+                try {
+                    fn();
+                    console.log(`OK - ${description}`);
+                } catch (err) {
+                    console.log(`X - ${description}`);
+                    console.log(err);
+                }
+                
             };
 
             // execute the file using node
