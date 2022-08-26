@@ -2,6 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
 
+const forbiddenDirectories = ['node_modules'];
+
 class Runner {
     constructor() {
         // store a reference to every file we discover in the directory
@@ -75,7 +77,7 @@ class Runner {
                 
                 this.testFiles.push({name: filepath, shortName: file });
 
-            } else if (stats.isDirectory()) { // join it to files array we're iterating over
+            } else if (stats.isDirectory() && !forbiddenDirectories.includes(file)) { // join it to files array we're iterating over
                 
                 const childFiles = await fs.promises.readdir(filepath);
 
