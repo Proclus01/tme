@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const chalk = require('chalk');
 
 class Runner {
     constructor() {
@@ -29,10 +30,10 @@ class Runner {
                 // then run our intended function for testing
                 try {
                     fn();
-                    console.log(`OK - ${description}`);
+                    console.log(chalk.green(`OK - ${description}`));
                 } catch (err) {
-                    console.log(`X - ${description}`);
-                    console.log('\t', err.message);
+                    console.log(chalk.red(`X - ${description}`));
+                    console.log(chalk.red('\t', err.message));
                 }
                 
             };
@@ -41,7 +42,7 @@ class Runner {
             try {
                 require(file.name);
             } catch(err) {
-                console.log('x - Error Loading File', file.name);
+                console.log(chalk.red('x - Error Loading File', file.name));
                 console.log(err);
             }
             
