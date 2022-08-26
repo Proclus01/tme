@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
+const render = require('./render');
 
 const forbiddenDirectories = ['node_modules'];
 
@@ -19,6 +20,9 @@ class Runner {
 
             // store our helper functions in an array
             const beforeEaches = [];
+
+            // Allows us to call render anywhere
+            global.render = render;
 
             // define our own global beforeEach function like from mocha
             global.beforeEach = (fn) => {
