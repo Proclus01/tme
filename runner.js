@@ -30,14 +30,14 @@ class Runner {
             };
 
             // define our own 'it' function like from mocha and declare it globally
-            global.it = (description, fn) => { // args = string description, function
+            global.it = async (description, fn) => { // args = string description, function
 
                 // run the beforeEaches array with our helper functions first
                 beforeEaches.forEach(func => func());
 
                 // then run our intended function for testing
                 try {
-                    fn();
+                    await fn();
                     console.log(chalk.green('\t', `OK - ${description}`));
                 } catch (err) {
                     const message = err.message.replace(/\n/g, '\n\t\t');
