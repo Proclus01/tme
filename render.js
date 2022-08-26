@@ -10,7 +10,12 @@ const render = async (filename) => {
         resources: 'usable'
     });
 
-    return dom;
+    return new Promise((resolve, reject) => {
+        // Wait for index.html to load before returning the dom, to structure our test synchronization
+        dom.window.document.addEventListener('DOMContentLoaded', () => {
+            resolve(dom);
+        });
+    });
 };
 
 module.exports = render;
