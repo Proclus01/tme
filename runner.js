@@ -13,6 +13,8 @@ class Runner {
         // and run the absolute path of the file
 
         for (let file of this.testFiles) {
+            console.log(chalk.gray(`---- ${file.shortName}`));
+
             // store our helper functions in an array
             const beforeEaches = [];
 
@@ -67,7 +69,7 @@ class Runner {
 
             if (stats.isFile() && file.includes('.test.js')) { // check if it ends with .test.js
                 
-                this.testFiles.push({name: filepath});
+                this.testFiles.push({name: filepath, shortName: file });
 
             } else if (stats.isDirectory()) { // join it to files array we're iterating over
                 
