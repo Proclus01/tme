@@ -32,10 +32,12 @@ class Runner {
                 // then run our intended function for testing
                 try {
                     fn();
-                    console.log(chalk.green(`OK - ${description}`));
+                    console.log(chalk.green('\t', `OK - ${description}`));
                 } catch (err) {
-                    console.log(chalk.red(`X - ${description}`));
-                    console.log(chalk.red('\t', err.message));
+                    const message = err.message.replace(/\n/g, '\n\t\t');
+
+                    console.log(chalk.red('\t', `X - ${description}`));
+                    console.log(chalk.red('\t', message));
                 }
                 
             };
@@ -44,6 +46,8 @@ class Runner {
             try {
                 require(file.name);
             } catch(err) {
+                const message = err.message.replace(/\n/g, '\n\t\t');
+
                 console.log(chalk.red('x - Error Loading File', file.name));
                 console.log(err);
             }
